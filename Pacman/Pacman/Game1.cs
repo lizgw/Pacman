@@ -18,7 +18,7 @@ namespace Pacman
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        //
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
