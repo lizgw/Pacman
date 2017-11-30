@@ -16,6 +16,9 @@ namespace Pacman
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////
+        /// </summary>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
