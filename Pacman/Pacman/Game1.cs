@@ -16,11 +16,15 @@ namespace Pacman
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        /// <summary>
-        
-        /// </summary>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Mover[] movers;
+        Texture2D tempTexture;
+        Map map;
+
+        int tileWidth = 20;
+        int tileHeight = 20;
         
         public Game1()
         {
@@ -36,9 +40,21 @@ namespace Pacman
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            tempTexture = Content.Load<Texture2D>("white");
+            movers = new Mover[5];
+            Reset();
 
             base.Initialize();
+        }
+
+        private void Reset()
+        {
+            map = new Map();
+            movers[0] = new Pacman(10,15);
+            movers[1] = new Ghost(19,19);
+            movers[2] = new Ghost(1,1);
+            movers[3] = new Ghost(1,19);
+            movers[4] = new Ghost(19,1);
         }
 
         /// <summary>
@@ -70,11 +86,10 @@ namespace Pacman
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
+            foreach (Mover mover in movers)
+            {
+                mover.Update();
+            }
 
             base.Update(gameTime);
         }
@@ -87,7 +102,15 @@ namespace Pacman
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            map.Draw();
+            foreach (Mover mover in movers)
+            {
+                mover.Draw();
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
