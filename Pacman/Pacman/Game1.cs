@@ -17,7 +17,7 @@ namespace Pacman
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         /// <summary>
-        /// ///////////////////////////////////////////////////////////
+        
         /// </summary>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -60,6 +60,7 @@ namespace Pacman
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            //
         }
 
         /// <summary>
