@@ -21,7 +21,11 @@ namespace Pacman
         /// </summary>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        public int pacman_X, pacman_Y;
+
+        public static int pacman_x { get; internal set; }
+        public static int pacman_y { get; internal set; }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -37,7 +41,8 @@ namespace Pacman
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            pacman_X = 0;
+            pacman_Y = 0;
             base.Initialize();
         }
 
@@ -91,5 +96,7 @@ namespace Pacman
 
             base.Draw(gameTime);
         }
+       
     }
+     
 }
