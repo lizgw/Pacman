@@ -37,12 +37,12 @@ namespace Pacman
 
             this.tileX = tileX;
             this.tileY = tileY;
-            this.x = this.game.getMap().TileToCoordinate(tileX);
-            this.y = this.game.getMap().TileToCoordinate(tileY);
+            this.x = Map.TileToCoordinates(tileX, tileY)[0];
+            this.y = Map.TileToCoordinates(tileX, tileY)[1];
 
             this.direction = RIGHT;
 
-            this.destRect = new Rectangle((int)this.x, (int)this.y, game.TILE_SIZE, game.TILE_SIZE);
+            this.destRect = new Rectangle((int)this.x, (int)this.y, Game1.TILE_SIZE, Game1.TILE_SIZE);
             this.texture = texture;
         }
 
