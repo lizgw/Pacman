@@ -21,9 +21,10 @@ namespace Pacman
         /// </summary>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-       
 
-       
+        public const int TILE_SIZE = 32;
+
+        Map map;
 
         public Game1()
         {

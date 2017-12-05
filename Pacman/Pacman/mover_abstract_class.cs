@@ -13,7 +13,7 @@ namespace Pacman
 {
      abstract class Mover
     {
-        private Game1 game; // a reference to the current game
+        public Game1 game; // a reference to the current game
 
         public const short UP = 0;
         public const short RIGHT = 1;

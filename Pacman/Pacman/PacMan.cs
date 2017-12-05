@@ -45,25 +45,25 @@ namespace Pacman
 
             //if it passes an intersection, it will snap back to the intersection, change its direction and move in that direction the amount of lost distance
             int distanceFromLastTile = DistanceFromLastTile();
-            if (distanceFromLastTile > game.getMap().getTileSize())
+            if (distanceFromLastTile > Game1.TILE_SIZE)
             {
                 switch (direction)
                 {
                     case UP:
-                        y = TileToCoordinate(tileY - 1);
+                        y = Map.TileToCoordinates(tileX, tileY - 1)[1];
                         break;
                     case LEFT:
-                        x = TileToCoordinate(tileX - 1);
+                        x = Map.TileToCoordinates(tileX - 1, tileY)[0];
                         break;
                     case RIGHT:
-                        x = TileToCoordinate(tileX + 1);
+                        x = Map.TileToCoordinates(tileX + 1, tileY)[0];
                         break;
                     case DOWN:
-                        y = TileToCoordinate(tileY + 1);
+                        y = Map.TileToCoordinates(tileX, tileY + 1)[1];
                         break;
                 }
                 direction = NextDirection();
-                float turnDistance = distanceFromLastTile - game.getMap().getTileSize(); //this is the amount of distance left over it should travel in this frame in the new direction
+                float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
                 switch (direction)
                 {
                     case UP:
@@ -94,6 +94,12 @@ namespace Pacman
         override public void Draw(SpriteBatch sb)
         {
             sb.Draw(texture, destRect, Color.White);
+        }
+
+        private int DistanceFromLastTile()
+        {
+            // TODO: implement this
+            return -1;
         }
     }
 }
