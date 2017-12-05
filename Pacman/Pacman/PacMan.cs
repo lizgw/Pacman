@@ -13,45 +13,16 @@ namespace Pacman
 {
     class PacMan : Mover
     {
-        Game1 game;
-
-        float x;
-        float y;
-        int tileX;
-        int tileY;
-
-        float speed;
-        short direction;
-
-        Rectangle destRect;
         int spriteRadius;
 
-        Texture2D texture;
-
-        public PacMan(Game1 aGame, int aTileX, int aTileY)
+        public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
-            game = aGame;
-            x = game.getMap().TileToCoordinate(tileX);
-            y = game.getMap().TileToCoordinate(tileY);
-            tileX = aTileX;
-            tileY = aTileY;
             speed = 4;
-            direction = RIGHT;
-
-            destRect = new Rectangle(0, 0, 2 * spriteRadius, 2 * spriteRadius);
         }
 
-        public PacMan(Game1 aGame, int aTileX, int aTileY, int aSpeed)
+        public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture, int aSpeed) : base(aGame, aTileX, aTileY, aTexture)
         {
-            game = aGame;
-            x = game.getMap().TileToCoordinate(tileX);
-            y = game.getMap().TileToCoordinate(tileY);
-            tileX = aTileX;
-            tileY = aTileY;
             speed = aSpeed;
-            direction = RIGHT;
-
-            destRect = new Rectangle(0, 0, 2 * spriteRadius, 2 * spriteRadius);
         }
 
         override public void Update()

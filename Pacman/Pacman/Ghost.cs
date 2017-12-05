@@ -7,37 +7,25 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pacman
 {
-    class Ghost
+    class Ghost : Mover
     {
-        private Game1 game; // reference to the game it's in
-        private int speed;
-        private Vector2 pos;
-
-        private Rectangle rect;
-        private Texture2D texture;
-
-        public Ghost(int xPos, int yPos, Texture2D texture)
+       public Ghost(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
-            this.pos = new Vector2(xPos, yPos);
-            this.rect = new Rectangle(xPos, yPos, 32, 32);
-            this.texture = texture;
-            this.speed = 1;
+            speed = 1;
+            direction = RIGHT;
         }
 
-        public void Update()
+        override public void Update()
         {
-            // check keyboard input
-            // move according to input
+            // move & update position
+            // check tile (wall or free)
+            // if at an intersection, pick a direction
+            // collisions, etc...
         }
 
-        public void Draw(SpriteBatch sb)
+        override public void Draw(SpriteBatch sb)
         {
-            sb.Draw(this.texture, this.rect, Color.White);
-        }
-
-        public void increaseSpeed(int amount)
-        {
-            speed += amount;
+            sb.Draw(texture, destRect, Color.White);
         }
 
         // picks the next direction & returns it
