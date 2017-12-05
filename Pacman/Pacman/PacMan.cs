@@ -26,6 +26,8 @@ namespace Pacman
         Rectangle destRect;
         int spriteRadius;
 
+        Texture2D texture;
+
         public PacMan(Game1 aGame, int aTileX, int aTileY)
         {
             game = aGame;
@@ -52,7 +54,7 @@ namespace Pacman
             destRect = new Rectangle(0, 0, 2 * spriteRadius, 2 * spriteRadius);
         }
 
-        protected void Update()
+        override public void Update()
         {
             switch (direction)
             {
@@ -118,9 +120,9 @@ namespace Pacman
             return RIGHT; //this is a temporary solution to see if it works
         }
 
-        protected void Draw()
+        override public void Draw(SpriteBatch sb)
         {
-
+            sb.Draw(texture, destRect, Color.White);
         }
     }
 }

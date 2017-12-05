@@ -13,9 +13,12 @@ namespace Pacman
 {
      abstract class Mover
     {
-        public abstract void Update();
-        public abstract void Draw();
+        public const int UP = 0;
+        public const int RIGHT = 1;
+        public const int DOWN = 2;
+        public const int LEFT = 3;
 
-       
+        public abstract void Update();
+        public abstract void Draw(SpriteBatch sb);
     }
 }
