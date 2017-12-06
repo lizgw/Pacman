@@ -48,23 +48,23 @@ namespace Pacman
                     switch(tileType)
                     {
                         case BLANK:
-                            texture = tempTexture;
+                            texture = this.game.tileBlank;
                             tileColor = Color.Black;
                             break;
                         case WALL:
-                            texture = tempTexture;
+                            texture = this.game.tileWall;
                             tileColor = Color.Blue;
                             break;
                         case POINT:
-                            texture = tempTexture;
-                            tileColor = Color.Gray;
+                            texture = this.game.tilePoint;
+                            tileColor = Color.Yellow;
                             break;
                         case POWERUP:
-                            texture = tempTexture;
+                            texture = this.game.tilePowerup;
                             tileColor = Color.Red;
                             break;
                         case FRUIT:
-                            texture = tempTexture;
+                            texture = this.game.tileFruit;
                             tileColor = Color.Green;
                             break;
                     }

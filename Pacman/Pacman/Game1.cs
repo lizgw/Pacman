@@ -28,6 +28,13 @@ namespace Pacman
         Map map;
         Texture2D tempTexture;
 
+        public Texture2D tempTexture;
+        public Texture2D tileBlank;
+        public Texture2D tileWall;
+        public Texture2D tilePoint;
+        public Texture2D tilePowerup;
+        public Texture2D tileFruit;
+
         int timer = 0; //general timer we can use to time in-game actions
 
         public const int TILE_SIZE = 32;
@@ -48,6 +55,11 @@ namespace Pacman
         /// </summary>
         protected override void Initialize()
         {
+            tileBlank = Content.Load<Texture2D>("tile_blank");
+            tileWall = Content.Load<Texture2D>("tile_wall");
+            tilePoint = Content.Load<Texture2D>("tile_point");
+            tilePowerup = Content.Load<Texture2D>("tile_powerup");
+            tileFruit = Content.Load<Texture2D>("tile_fruit");
             tempTexture = Content.Load<Texture2D>("white");
             movers = new Mover[5];
             Reset();
