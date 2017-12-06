@@ -13,11 +13,6 @@ namespace Pacman
 {
      abstract class Mover
     {
-        public const short UP = 0;
-        public const short RIGHT = 1;
-        public const short DOWN = 2;
-        public const short LEFT = 3;
-
         protected Game1 game; // a reference to the current game
 
         protected float x; // actual x position
@@ -40,7 +35,7 @@ namespace Pacman
             x = Map.TileToCoordinates(tileX, tileY)[0];
             y = Map.TileToCoordinates(tileX, tileY)[1];
 
-            direction = RIGHT;
+            direction = Game1.RIGHT;
 
             destRect = new Rectangle((int)x, (int)y, Game1.TILE_SIZE, Game1.TILE_SIZE);
             this.texture = texture;

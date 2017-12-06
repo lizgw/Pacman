@@ -46,7 +46,8 @@ namespace Pacman
         {
             int[] coord = new int[] { -1, -1 };
 
-            // TODO: implement this
+            coord[0] = (tileX * Game1.TILE_SIZE) + Game1.TILE_SIZE / 2;
+            coord[1] = (tileY * Game1.TILE_SIZE) + Game1.TILE_SIZE / 2;
 
             return coord;
         }
@@ -56,7 +57,8 @@ namespace Pacman
         {
             int[] tile = new int[] { -1, -1 };
 
-            // TODO: implement this
+            tile[0] = coordX / Game1.TILE_SIZE;
+            tile[1] = coordY / Game1.TILE_SIZE;
 
             return tile;
         }

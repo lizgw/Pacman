@@ -16,6 +16,11 @@ namespace Pacman
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        public const short UP = 0;
+        public const short RIGHT = 1;
+        public const short DOWN = 2;
+        public const short LEFT = 3;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 

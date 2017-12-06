@@ -13,18 +13,16 @@ namespace Pacman
 {
     class PacMan : Mover
     {
-        static int spriteRadius = 20;
-
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = 4;
-            destRect = new Rectangle(0, 0, spriteRadius * 2, spriteRadius * 2);
+            destRect = new Rectangle(0, 0, Game1.TILE_SIZE, Game1.TILE_SIZE);
         }
 
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture, int aSpeed) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = aSpeed;
-            destRect = new Rectangle(0, 0, spriteRadius * 2, spriteRadius * 2);
+            destRect = new Rectangle(0, 0, Game1.TILE_SIZE, Game1.TILE_SIZE);
         }
 
         override public void Update()
@@ -34,16 +32,16 @@ namespace Pacman
 
             switch (direction)
             {
-                case UP:
+                case Game1.UP:
                     y -= speed;
                     break;
-                case LEFT:
+                case Game1.LEFT:
                     x -= speed;
                     break;
-                case RIGHT:
+                case Game1.RIGHT:
                     x += speed;
                     break;
-                case DOWN:
+                case Game1.DOWN:
                     y += speed;
                     break;
             }
@@ -54,16 +52,16 @@ namespace Pacman
             {
                 switch (direction)
                 {
-                    case UP:
+                    case Game1.UP:
                         y = Map.TileToCoordinates(tileX, tileY - 1)[1];
                         break;
-                    case LEFT:
+                    case Game1.LEFT:
                         x = Map.TileToCoordinates(tileX - 1, tileY)[0];
                         break;
-                    case RIGHT:
+                    case Game1.RIGHT:
                         x = Map.TileToCoordinates(tileX + 1, tileY)[0];
                         break;
-                    case DOWN:
+                    case Game1.DOWN:
                         y = Map.TileToCoordinates(tileX, tileY + 1)[1];
                         break;
                 }
@@ -71,29 +69,29 @@ namespace Pacman
                 float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
                 switch (direction)
                 {
-                    case UP:
+                    case Game1.UP:
                         y -= turnDistance;
                         break;
-                    case LEFT:
+                    case Game1.LEFT:
                         x -= turnDistance;
                         break;
-                    case RIGHT:
+                    case Game1.RIGHT:
                         x += turnDistance;
                         break;
-                    case DOWN:
+                    case Game1.DOWN:
                         y += turnDistance;
                         break;
                 }
             }
 
             //update position of destRect
-            destRect.X = (int)x - spriteRadius;
-            destRect.Y = (int)y - spriteRadius;
+            destRect.X = (int)x - Game1.TILE_SIZE / 2;
+            destRect.Y = (int)y - Game1.TILE_SIZE / 2;
         }
 
         protected short NextDirection()
         {
-            return RIGHT; //this is a temporary solution to see if it works
+            return Game1.RIGHT; //this is a temporary solution to see if it works
         }
 
         override public void Draw(SpriteBatch sb)

@@ -12,7 +12,7 @@ namespace Pacman
        public Ghost(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = 1;
-            direction = RIGHT;
+            direction = Game1.RIGHT;
         }
 
         override public void Update()
