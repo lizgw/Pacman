@@ -20,7 +20,7 @@ namespace Pacman
         SpriteBatch spriteBatch;
 
         Mover[] movers;
-        Texture2D tempTexture;
+        public Texture2D tempTexture;
         Map map;
 
         int timer = 0; //general timer we can use to time in-game actions
@@ -31,6 +31,8 @@ namespace Pacman
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = TILE_SIZE * 20;
+            graphics.PreferredBackBufferHeight = TILE_SIZE * 20;
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace Pacman
 
         private void Reset()
         {
-            map = new Map();
+            map = new Map(this);
             movers[0] = new PacMan(this, 10, 15, tempTexture);
             movers[1] = new Ghost(this, 19, 19, tempTexture);
             movers[2] = new Ghost(this, 1, 1, tempTexture);
@@ -107,7 +109,7 @@ namespace Pacman
 
             spriteBatch.Begin();
 
-            map.Draw();
+            map.Draw(spriteBatch);
             foreach (Mover mover in movers)
             {
                 mover.Draw(spriteBatch);
