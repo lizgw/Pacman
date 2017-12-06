@@ -61,6 +61,20 @@ namespace Pacman
             return tile;
         }
 
+        // takes the map and the current position as [x, y], returns [up, right, down, left]
+        public static int[] GetSurroundingCoordinates(Map m, int[] pos)
+        {
+            int xVal = pos[0];
+            int yVal = pos[1];
+            int[] coords = new int[4];
+            coords[Mover.UP] = m.map[xVal, yVal - 1];
+            coords[Mover.RIGHT] = m.map[xVal + 1, yVal];
+            coords[Mover.DOWN] = m.map[xVal, yVal + 1];
+            coords[Mover.LEFT] = m.map[xVal - 1, yVal];
+
+            return coords;
+        }
+
         private int[,] map;
 
         public Map(Game1 game)
