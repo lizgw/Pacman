@@ -42,27 +42,15 @@ namespace Pacman
             { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }//20
 
         };
-
-        // takes a tile from the array and returns the center of that tile in game space as [x, y]
-        public static int[] TileToCoordinates(int tileX, int tileY)
+        
+        public static int TileToCoordinate(int tile)
         {
-            int[] coord = new int[] { -1, -1 };
-
-            coord[0] = (tileX * Game1.TILE_SIZE) + Game1.TILE_SIZE / 2;
-            coord[1] = (tileY * Game1.TILE_SIZE) + Game1.TILE_SIZE / 2;
-
-            return coord;
+            return (tile * Game1.TILE_SIZE) + Game1.TILE_SIZE / 2;
         }
 
-        // takes world coordinates and returns the tile that lies there as [row, column] in the array
-        public static int[] CoordinatesToTile(int coordX, int coordY)
+        public static int CoordinateToTile(int coord)
         {
-            int[] tile = new int[] { -1, -1 };
-
-            tile[0] = coordX / Game1.TILE_SIZE;
-            tile[1] = coordY / Game1.TILE_SIZE;
-
-            return tile;
+            return coord / Game1.TILE_SIZE;
         }
 
         // takes the map and the current position as [x, y], returns [up, right, down, left]
@@ -71,10 +59,10 @@ namespace Pacman
             int xVal = pos[0];
             int yVal = pos[1];
             int[] coords = new int[4];
-            coords[Mover.UP] = m.map[xVal, yVal - 1];
-            coords[Mover.RIGHT] = m.map[xVal + 1, yVal];
-            coords[Mover.DOWN] = m.map[xVal, yVal + 1];
-            coords[Mover.LEFT] = m.map[xVal - 1, yVal];
+            coords[Game1.UP] = m.map[xVal, yVal - 1];
+            coords[Game1.RIGHT] = m.map[xVal + 1, yVal];
+            coords[Game1.DOWN] = m.map[xVal, yVal + 1];
+            coords[Game1.LEFT] = m.map[xVal - 1, yVal];
 
             return coords;
         }

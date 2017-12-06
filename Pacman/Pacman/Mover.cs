@@ -32,8 +32,8 @@ namespace Pacman
 
             this.tileX = tileX;
             this.tileY = tileY;
-            x = Map.TileToCoordinates(tileX, tileY)[0];
-            y = Map.TileToCoordinates(tileX, tileY)[1];
+            x = Map.TileToCoordinate(tileX);
+            y = Map.TileToCoordinate(tileY);
 
             direction = Game1.RIGHT;
 
@@ -47,6 +47,23 @@ namespace Pacman
         public void increaseSpeed(float amount)
         {
             speed += amount;
+        }
+
+        protected int DistanceFromLastTile()
+        {
+            switch (direction)
+            {
+                case Game1.UP:
+                    return Map.TileToCoordinate(tileY) - (int)y;
+                case Game1.LEFT:
+                    return Map.TileToCoordinate(tileX) - (int)x;
+                case Game1.RIGHT:
+                    return (int)x - Map.TileToCoordinate(tileX);
+                case Game1.DOWN:
+                    return (int)y - Map.TileToCoordinate(tileY);
+                default:
+                    return -1;
+            }
         }
     }
 }
