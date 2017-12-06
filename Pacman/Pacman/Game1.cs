@@ -94,6 +94,7 @@ namespace Pacman
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            map.Update();
             foreach (Mover mover in movers)
             {
                 mover.Update();
