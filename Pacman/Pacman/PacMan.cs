@@ -74,18 +74,23 @@ namespace Pacman
                 switch (direction)
                 {
                     case Game1.UP:
-                        y = Map.TileToCoordinates(tileX, tileY - 1)[1];
+                        y = Map.TileToCoordinate(tileY - 1);
                         break;
                     case Game1.LEFT:
-                        x = Map.TileToCoordinates(tileX - 1, tileY)[0];
+                        x = Map.TileToCoordinate(tileX - 1);
                         break;
                     case Game1.RIGHT:
-                        x = Map.TileToCoordinates(tileX + 1, tileY)[0];
+                        x = Map.TileToCoordinate(tileX + 1);
                         break;
                     case Game1.DOWN:
-                        y = Map.TileToCoordinates(tileX, tileY + 1)[1];
+                        y = Map.TileToCoordinate(tileY + 1);
                         break;
                 }
+
+                //update tileX and tileY so we can use them at the next intersection
+                tileX = Map.CoordinateToTile((int)x);
+                tileY = Map.CoordinateToTile((int)y);
+
                 direction = NextDirection();
                 float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
                 switch (direction)
@@ -118,12 +123,6 @@ namespace Pacman
         override public void Draw(SpriteBatch sb)
         {
             sb.Draw(texture, destRect, Color.Yellow);
-        }
-
-        private int DistanceFromLastTile()
-        {
-            // TODO: implement this
-            return -1;
         }
     }
 }
