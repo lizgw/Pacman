@@ -13,20 +13,25 @@ namespace Pacman
 {
     class PacMan : Mover
     {
-        int spriteRadius;
+        static int spriteRadius = 20;
 
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = 4;
+            destRect = new Rectangle(0, 0, spriteRadius * 2, spriteRadius * 2);
         }
 
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture, int aSpeed) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = aSpeed;
+            destRect = new Rectangle(0, 0, spriteRadius * 2, spriteRadius * 2);
         }
 
         override public void Update()
         {
+            if (game.GetTimer() % 60 == 0)
+                direction = (short)((direction + 1) % 4);
+
             switch (direction)
             {
                 case UP:
@@ -93,7 +98,7 @@ namespace Pacman
 
         override public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, destRect, Color.White);
+            sb.Draw(texture, destRect, Color.Yellow);
         }
 
         private int DistanceFromLastTile()

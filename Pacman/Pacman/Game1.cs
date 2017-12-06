@@ -23,6 +23,8 @@ namespace Pacman
         Texture2D tempTexture;
         Map map;
 
+        int timer = 0; //general timer we can use to time in-game actions
+
         public const int TILE_SIZE = 32;
 
         public Game1()
@@ -90,6 +92,8 @@ namespace Pacman
                 mover.Update();
             }
 
+            timer++;
+
             base.Update(gameTime);
         }
 
@@ -112,6 +116,11 @@ namespace Pacman
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public int GetTimer()
+        {
+            return timer;
         }
     }
 }
