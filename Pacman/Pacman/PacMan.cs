@@ -13,22 +13,43 @@ namespace Pacman
 {
     class PacMan : Mover
     {
+        KeyboardState kb;
+
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = 4;
             destRect = new Rectangle(0, 0, Game1.TILE_SIZE, Game1.TILE_SIZE);
+            kb = Keyboard.GetState();
         }
 
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture, int aSpeed) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = aSpeed;
             destRect = new Rectangle(0, 0, Game1.TILE_SIZE, Game1.TILE_SIZE);
+            kb = Keyboard.GetState();
         }
 
         override public void Update()
         {
-            if (game.GetTimer() % 60 == 0)
-                direction = (short)((direction + 1) % 4);
+            kb = Keyboard.GetState();
+
+            // change direction according to kb
+            if (kb.IsKeyDown(Keys.Up))
+            {
+                direction = Game1.UP;
+            }
+            if (kb.IsKeyDown(Keys.Down))
+            {
+                direction = Game1.DOWN;
+            }
+            if (kb.IsKeyDown(Keys.Left))
+            {
+                direction = Game1.LEFT;
+            }
+            if (kb.IsKeyDown(Keys.Right))
+            {
+                direction = Game1.RIGHT;
+            }
 
             switch (direction)
             {
