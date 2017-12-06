@@ -31,26 +31,6 @@ namespace Pacman
 
         override public void Update()
         {
-            kb = Keyboard.GetState();
-
-            // change direction according to kb
-            if (kb.IsKeyDown(Keys.Up))
-            {
-                direction = Game1.UP;
-            }
-            if (kb.IsKeyDown(Keys.Down))
-            {
-                direction = Game1.DOWN;
-            }
-            if (kb.IsKeyDown(Keys.Left))
-            {
-                direction = Game1.LEFT;
-            }
-            if (kb.IsKeyDown(Keys.Right))
-            {
-                direction = Game1.RIGHT;
-            }
-
             switch (direction)
             {
                 case Game1.UP:
@@ -117,7 +97,26 @@ namespace Pacman
 
         protected short NextDirection()
         {
-            return Game1.RIGHT; //this is a temporary solution to see if it works
+            kb = Keyboard.GetState();
+
+            // change direction according to kb
+            if (kb.IsKeyDown(Keys.Up))
+            {
+                return Game1.UP;
+            }
+            if (kb.IsKeyDown(Keys.Down))
+            {
+                return Game1.DOWN;
+            }
+            if (kb.IsKeyDown(Keys.Left))
+            {
+                return Game1.LEFT;
+            }
+            if (kb.IsKeyDown(Keys.Right))
+            {
+                return Game1.RIGHT;
+            }
+            return direction;
         }
 
         override public void Draw(SpriteBatch sb)
