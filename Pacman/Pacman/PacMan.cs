@@ -76,24 +76,28 @@ namespace Pacman
                 tileX = Map.CoordinateToTile((int)x);
                 tileY = Map.CoordinateToTile((int)y);
 
+                bool wasMoving = direction != -1; //this is only used to make it not do anything with turnDistance
                 direction = NextDirection();
-                float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
-                switch (direction)
+                if (wasMoving)
                 {
-                    case -1: //this represents staying in place
-                        break;
-                    case Game1.UP:
-                        y -= turnDistance;
-                        break;
-                    case Game1.LEFT:
-                        x -= turnDistance;
-                        break;
-                    case Game1.RIGHT:
-                        x += turnDistance;
-                        break;
-                    case Game1.DOWN:
-                        y += turnDistance;
-                        break;
+                    float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
+                    switch (direction)
+                    {
+                        case -1: //this represents staying in place
+                            break;
+                        case Game1.UP:
+                            y -= turnDistance;
+                            break;
+                        case Game1.LEFT:
+                            x -= turnDistance;
+                            break;
+                        case Game1.RIGHT:
+                            x += turnDistance;
+                            break;
+                        case Game1.DOWN:
+                            y += turnDistance;
+                            break;
+                    }
                 }
             }
 
