@@ -72,10 +72,17 @@ namespace Pacman
                         break;
                 }
 
-                //update tileX and tileY so we can use them at the next intersection
-                tileX = Map.CoordinateToTile((int)x);
-                tileY = Map.CoordinateToTile((int)y);
+                if (direction != -1)
+                {
+                    //update tileX and tileY so we can use them at the next intersection
+                    tileX = Map.CoordinateToTile((int)x);
+                    tileY = Map.CoordinateToTile((int)y);
 
+                    //change the newest tile to a blank and collect points
+                    game.GetMap().ChangeToBlank(tileX, tileY);
+                    game.addPoints(100);
+                }
+                
                 bool wasMoving = direction != -1; //this is only used to make it not do anything with turnDistance
                 direction = NextDirection();
                 if (wasMoving)
@@ -110,8 +117,6 @@ namespace Pacman
         {
             kb = Keyboard.GetState();
             short[] surroundingTiles = game.GetMap().GetSurroundingTiles(tileX, tileY);
-            Debug.WriteLine("X: " + tileX + " Y:" + tileY);
-            Debug.WriteLine(surroundingTiles[0] + " " + surroundingTiles[1] + " " + surroundingTiles[2] + " " + surroundingTiles[3] + " " + surroundingTiles[4]);
 
             // change direction according to kb
             if (kb.IsKeyDown(Keys.Up) && direction != Game1.DOWN && surroundingTiles[Game1.UP] != Map.WALL)

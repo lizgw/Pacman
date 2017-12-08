@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace Pacman
 {
@@ -27,7 +28,8 @@ namespace Pacman
         Mover[] movers;
         Map map;
         Texture2D tempTexture;
-        
+        int score;
+
         public Texture2D tileBlank;
         public Texture2D tileWall;
         public Texture2D tilePoint;
@@ -132,6 +134,9 @@ namespace Pacman
                 mover.Draw(spriteBatch);
             }
 
+            //Todo: replace this with graphically displayed score
+            //Debug.WriteLine("Score: " + score);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -145,6 +150,11 @@ namespace Pacman
         public Map GetMap()
         {
             return map;
+        }
+
+        public void addPoints(int numPoints)
+        {
+            score += numPoints;
         }
     }
 }

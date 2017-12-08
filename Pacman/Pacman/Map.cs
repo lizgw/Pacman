@@ -112,16 +112,19 @@ namespace Pacman
         // takes the map and the current position as [x, y], returns [up, right, down, left]
         public short[] GetSurroundingTiles(int xVal, int yVal)
         {
-            short[] coords = new short[5];
+            short[] coords = new short[4];
 
             coords[Game1.UP] = map[yVal - 1, xVal];
             coords[Game1.RIGHT] = map[yVal, xVal + 1];
             coords[Game1.DOWN] = map[yVal + 1, xVal];
             coords[Game1.LEFT] = map[yVal, xVal - 1];
 
-            coords[4] = map[yVal, xVal];
-
             return coords;
+        }
+
+        public void ChangeToBlank(int xVal, int yVal)
+        {
+            map[yVal, xVal] = BLANK;
         }
     }
 }
