@@ -114,6 +114,16 @@ namespace Pacman
         {
             short[] coords = new short[4];
 
+            // make sure coords don't go out of bounds on wrap
+            if (xVal >= map.GetLength(1) - 1)
+            {
+                xVal = 18;
+            }
+            if (xVal <= 0)
+            {
+                xVal = 1;
+            }
+
             coords[Game1.UP] = map[yVal - 1, xVal];
             coords[Game1.RIGHT] = map[yVal, xVal + 1];
             coords[Game1.DOWN] = map[yVal + 1, xVal];

@@ -145,5 +145,18 @@ namespace Pacman
                     return -1;
             }
         }
+
+        protected void checkWrap()
+        {
+            // wrap around left/right
+            if (tileX == 0 && direction == Game1.LEFT)
+            {
+                //Console.WriteLine("wrap left to right");
+            }
+            if (tileX >= 19 && direction == Game1.RIGHT)
+            {
+                //Console.WriteLine("wrap right to left");
+            }
+        }
     }
 }

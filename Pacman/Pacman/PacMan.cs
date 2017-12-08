@@ -34,7 +34,7 @@ namespace Pacman
         {
             base.Update();
         }
-
+        
         override protected short NextDirection()
         {
             //this part can be used to implement any activities that need to be done once per intersection
