@@ -115,6 +115,8 @@ namespace Pacman
                 }
             }
 
+            checkWrap();
+
             //update position of destRect
             destRect.X = (int)x - Game1.TILE_SIZE / 2;
             destRect.Y = (int)y - Game1.TILE_SIZE / 2;
@@ -151,11 +153,13 @@ namespace Pacman
             // wrap around left/right
             if (tileX == 0 && direction == Game1.LEFT)
             {
-                //Console.WriteLine("wrap left to right");
+                tileX = 19;
+                destRect.X = Game1.TILE_SIZE * 20;
             }
             if (tileX >= 19 && direction == Game1.RIGHT)
             {
-                //Console.WriteLine("wrap right to left");
+                tileX = 0;
+                destRect.X = 0;
             }
         }
     }
