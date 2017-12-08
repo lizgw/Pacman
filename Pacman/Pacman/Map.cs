@@ -132,9 +132,12 @@ namespace Pacman
             return coords;
         }
 
-        public void ChangeToBlank(int xVal, int yVal)
+        //will return the state of the tile before it was changed
+        public short ChangeToBlank(int xVal, int yVal)
         {
+            short output = map[yVal, xVal];
             map[yVal, xVal] = BLANK;
+            return output;
         }
     }
 }

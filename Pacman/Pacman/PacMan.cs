@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Pacman
 {
@@ -30,46 +31,33 @@ namespace Pacman
             kb = Keyboard.GetState();
         }
 
-        new protected void Update()
+        protected override void IntersectionActions()
         {
-            base.Update();
+            if (game.GetMap().ChangeToBlank(tileX, tileY) == Map.POINT)
+                game.AddPoints(100);
         }
-        
-        override protected short NextDirection()
+
+        override protected short[] DirectionPreferences()
         {
-            //this part can be used to implement any activities that need to be done once per intersection
-            if (direction != -1)
+            ArrayList tempDirs = new ArrayList();
+            KeyboardState kb = Keyboard.GetState();
+
+            if (kb.IsKeyDown(Keys.Up))
+                tempDirs.Add(Game1.UP);
+            if (kb.IsKeyDown(Keys.Right))
+                tempDirs.Add(Game1.RIGHT);
+            if (kb.IsKeyDown(Keys.Down))
+                tempDirs.Add(Game1.DOWN);
+            if (kb.IsKeyDown(Keys.Left))
+                tempDirs.Add(Game1.LEFT);
+
+            short[] output = new short[tempDirs.Count];
+            for (int i = 0; i < tempDirs.Count; i++)
             {
-                //change the newest tile to a blank and collect points
-                game.GetMap().ChangeToBlank(tileX, tileY);
-                game.addPoints(100);
+                output[i] = (short)tempDirs[i];
             }
 
-            kb = Keyboard.GetState();
-            short[] surroundingTiles = game.GetMap().GetSurroundingTiles(tileX, tileY);
-
-            // change direction according to kb
-            if (kb.IsKeyDown(Keys.Up) && direction != Game1.DOWN && surroundingTiles[Game1.UP] != Map.WALL)
-            {
-                return Game1.UP;
-            }
-            if (kb.IsKeyDown(Keys.Down) && direction != Game1.UP && surroundingTiles[Game1.DOWN] != Map.WALL)
-            {
-                return Game1.DOWN;
-            }
-            if (kb.IsKeyDown(Keys.Left) && direction != Game1.RIGHT && surroundingTiles[Game1.LEFT] != Map.WALL)
-            {
-                return Game1.LEFT;
-            }
-            if (kb.IsKeyDown(Keys.Right) && direction != Game1.LEFT && surroundingTiles[Game1.RIGHT] != Map.WALL)
-            {
-                return Game1.RIGHT;
-            }
-
-            if (direction == -1 || surroundingTiles[direction] == Map.WALL)
-                return -1; //this can represent staying in place
-            else
-                return direction;
+            return output;
         }
 
         override public void Draw(SpriteBatch sb)

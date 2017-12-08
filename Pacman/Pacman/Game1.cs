@@ -153,9 +153,26 @@ namespace Pacman
             return map;
         }
 
-        public void addPoints(int numPoints)
+        public void AddPoints(int numPoints)
         {
             score += numPoints;
+        }
+
+        public static short OppositeDirection(short dir)
+        {
+            switch (dir)
+            {
+                case UP:
+                    return DOWN;
+                case RIGHT:
+                    return LEFT;
+                case DOWN:
+                    return UP;
+                case LEFT:
+                    return RIGHT;
+                default:
+                    return -1;
+            }
         }
     }
 }

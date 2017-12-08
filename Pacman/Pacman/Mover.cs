@@ -124,7 +124,35 @@ namespace Pacman
 
         public abstract void Draw(SpriteBatch sb);
 
-        protected abstract short NextDirection();
+        protected short NextDirection()
+        {
+            if (direction != -1)
+            {
+                IntersectionActions();
+            }
+
+            short[] surroundingTiles = game.GetMap().GetSurroundingTiles(tileX, tileY);
+
+            short[] directionPreferences = DirectionPreferences();
+
+            // change direction according to direction preferences
+            foreach (short pref in directionPreferences)
+            {
+                if (direction != Game1.OppositeDirection(pref) && surroundingTiles[pref] != Map.WALL)
+                {
+                    return pref;
+                }
+            }
+
+            if (direction == -1 || surroundingTiles[direction] == Map.WALL)
+                return -1; //this can represent staying in place
+            else
+                return direction;
+        }
+
+        protected abstract void IntersectionActions();
+
+        protected abstract short[] DirectionPreferences();
 
         public void increaseSpeed(float amount)
         {
