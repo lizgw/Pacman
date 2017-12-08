@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace Pacman
 {
@@ -33,6 +34,8 @@ namespace Pacman
         {
             switch (direction)
             {
+                case -1: //this represents staying in place
+                    break;
                 case Game1.UP:
                     y -= speed;
                     break;
@@ -49,10 +52,12 @@ namespace Pacman
 
             //if it passes an intersection, it will snap back to the intersection, change its direction and move in that direction the amount of lost distance
             int distanceFromLastTile = DistanceFromLastTile();
-            if (distanceFromLastTile > Game1.TILE_SIZE)
+            if (distanceFromLastTile > Game1.TILE_SIZE || direction == -1)
             {
                 switch (direction)
                 {
+                    case -1: //this represents staying in place
+                        break;
                     case Game1.UP:
                         y = Map.TileToCoordinate(tileY - 1);
                         break;
@@ -75,6 +80,8 @@ namespace Pacman
                 float turnDistance = distanceFromLastTile - Game1.TILE_SIZE; //this is the amount of distance left over it should travel in this frame in the new direction
                 switch (direction)
                 {
+                    case -1: //this represents staying in place
+                        break;
                     case Game1.UP:
                         y -= turnDistance;
                         break;
@@ -98,25 +105,32 @@ namespace Pacman
         protected short NextDirection()
         {
             kb = Keyboard.GetState();
+            short[] surroundingTiles = game.GetMap().GetSurroundingTiles(tileX, tileY);
+            Debug.WriteLine("X: " + tileX + " Y:" + tileY);
+            Debug.WriteLine(surroundingTiles[0] + " " + surroundingTiles[1] + " " + surroundingTiles[2] + " " + surroundingTiles[3] + " " + surroundingTiles[4]);
 
             // change direction according to kb
-            if (kb.IsKeyDown(Keys.Up))
+            if (kb.IsKeyDown(Keys.Up) && direction != Game1.DOWN && surroundingTiles[Game1.UP] != Map.WALL)
             {
                 return Game1.UP;
             }
-            if (kb.IsKeyDown(Keys.Down))
+            if (kb.IsKeyDown(Keys.Down) && direction != Game1.UP && surroundingTiles[Game1.DOWN] != Map.WALL)
             {
                 return Game1.DOWN;
             }
-            if (kb.IsKeyDown(Keys.Left))
+            if (kb.IsKeyDown(Keys.Left) && direction != Game1.RIGHT && surroundingTiles[Game1.LEFT] != Map.WALL)
             {
                 return Game1.LEFT;
             }
-            if (kb.IsKeyDown(Keys.Right))
+            if (kb.IsKeyDown(Keys.Right) && direction != Game1.LEFT && surroundingTiles[Game1.RIGHT] != Map.WALL)
             {
                 return Game1.RIGHT;
             }
-            return direction;
+
+            if (direction == -1 || surroundingTiles[direction] == Map.WALL)
+                return -1; //this can represent staying in place
+            else
+                return direction;
         }
 
         override public void Draw(SpriteBatch sb)

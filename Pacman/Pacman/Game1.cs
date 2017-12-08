@@ -25,8 +25,8 @@ namespace Pacman
         SpriteBatch spriteBatch;
 
         Mover[] movers;
-        public Texture2D tempTexture;
         Map map;
+        Texture2D tempTexture;
 
         int timer = 0; //general timer we can use to time in-game actions
 
@@ -58,7 +58,7 @@ namespace Pacman
         private void Reset()
         {
             map = new Map(this);
-            movers[0] = new PacMan(this, 10, 15, tempTexture);
+            movers[0] = new PacMan(this, 10, 5, tempTexture);
             movers[1] = new Ghost(this, 19, 19, tempTexture);
             movers[2] = new Ghost(this, 1, 1, tempTexture);
             movers[3] = new Ghost(this, 1, 19, tempTexture);
@@ -129,6 +129,11 @@ namespace Pacman
         public int GetTimer()
         {
             return timer;
+        }
+
+        public Map GetMap()
+        {
+            return map;
         }
     }
 }
