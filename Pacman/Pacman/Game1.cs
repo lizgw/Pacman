@@ -27,9 +27,8 @@ namespace Pacman
 
         Mover[] movers;
         Map map;
-        Texture2D tempTexture;
+        public Texture2D tempTexture;
         int score;
-
         public Texture2D tileBlank;
         public Texture2D tileWall;
         public Texture2D tilePoint;
