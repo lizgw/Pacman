@@ -123,6 +123,14 @@ namespace Pacman
             {
                 xVal = 1;
             }
+            if (yVal <= 0)
+            {
+                yVal = 1;
+            }
+            if (yVal >= map.GetLength(0) - 1)
+            {
+                yVal = 18;
+            }
 
             coords[Game1.UP] = map[yVal - 1, xVal];
             coords[Game1.RIGHT] = map[yVal, xVal + 1];
