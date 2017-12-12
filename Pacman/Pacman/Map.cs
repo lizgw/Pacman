@@ -16,7 +16,7 @@ namespace Pacman
         public const int FRUIT = 4;
 
         private Game1 game;
-        private short[,] map;
+        public short[,] map;
         private Texture2D tempTexture;
 
         public Map(Game1 aGame)

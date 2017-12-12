@@ -181,14 +181,15 @@ namespace Pacman
             // wrap around left/right
             if (tileX == 0 && direction == Game1.LEFT)
             {
-                tileX = 19;
-                destRect.X = Game1.TILE_SIZE * 20;
+                x = Game1.TILE_SIZE * 20;
+                tileX = Map.CoordinateToTile((int)x);
             }
             if (tileX >= 19 && direction == Game1.RIGHT)
             {
-                tileX = 0;
-                destRect.X = 0;
+                x = 0;
+                tileX = Map.CoordinateToTile((int)x);
             }
+            // TODO: top right wrap tunnel lets you move on top of wall
         }
     }
 }

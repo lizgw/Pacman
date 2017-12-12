@@ -33,8 +33,12 @@ namespace Pacman
 
         protected override void IntersectionActions()
         {
-            if (game.GetMap().ChangeToBlank(tileX, tileY) == Map.POINT)
+            if (game.GetMap().map[tileY, tileX] == Map.POINT)
+            {
+                game.GetMap().ChangeToBlank(tileX, tileY);
                 game.AddPoints(100);
+            }
+                
         }
 
         override protected short[] DirectionPreferences()
