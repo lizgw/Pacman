@@ -27,12 +27,8 @@ namespace Pacman
 
         Mover[] movers;
         Map map;
-<<<<<<< HEAD
         public Texture2D tempTexture;
-=======
-        Texture2D tempTexture;
 
->>>>>>> start screen
         int score;
         public Texture2D tileBlank;
         public Texture2D tileWall;
@@ -189,34 +185,27 @@ namespace Pacman
     {
         return map;
     }
-
-<<<<<<< HEAD
-        public void AddPoints(int numPoints)
-        {
-            score += numPoints;
-        }
-
-        public static short OppositeDirection(short dir)
-        {
-            switch (dir)
-            {
-                case UP:
-                    return DOWN;
-                case RIGHT:
-                    return LEFT;
-                case DOWN:
-                    return UP;
-                case LEFT:
-                    return RIGHT;
-                default:
-                    return -1;
-            }
-        }
-=======
-    public void addPoints(int numPoints)
+        
+    public void AddPoints(int numPoints)
     {
         score += numPoints;
->>>>>>> start screen
+    }
+
+    public static short OppositeDirection(short dir)
+    {
+        switch (dir)
+        {
+            case UP:
+                return DOWN;
+            case RIGHT:
+                return LEFT;
+            case DOWN:
+                return UP;
+            case LEFT:
+                return RIGHT;
+            default:
+                return -1;
+        }
     }
 }
 }
