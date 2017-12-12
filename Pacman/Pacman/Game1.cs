@@ -45,6 +45,8 @@ namespace Pacman
         bool game_started;
         public const int TILE_SIZE = 32;
 
+        public SpriteFont font1;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -101,7 +103,7 @@ namespace Pacman
             title = this.Content.Load<Texture2D>("title");
             start_button = this.Content.Load<Texture2D>("start_button");
             title_pac = this.Content.Load<Texture2D>("title_pac");
-            // TODO: use this.Content to load your game content here
+            font1 = this.Content.Load<SpriteFont>("font1");
         }
 
         /// <summary>
@@ -174,7 +176,7 @@ namespace Pacman
             }
 
             //Todo: replace this with graphically displayed score
-            Debug.WriteLine("Score: " + score);
+            spriteBatch.DrawString(font1, "" + score, new Vector2(10, 2), Color.White);
 
             spriteBatch.End();
 
