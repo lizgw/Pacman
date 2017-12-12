@@ -164,13 +164,9 @@ namespace Pacman
                     if (mover != null)
                         mover.Draw(spriteBatch);
                 }
-
-
             }
             else
             {
-
-                
                 spriteBatch.Draw(title, new Rectangle(170 + 85, 200, 500, 300), new Rectangle(0, 0, title.Width, title.Height), Color.White, 0, new Vector2(250, 150), SpriteEffects.None, 0);
                 spriteBatch.Draw(start_button, new Rectangle(170 + 115, 170 + 150, 250, 150), new Rectangle(0, 0, start_button.Width, start_button.Height), Color.White, 0, new Vector2(125, 75), SpriteEffects.None, 0);
                 spriteBatch.Draw(title_pac, new Rectangle(0, 190, 200, 300), new Rectangle(0, 0, title_pac.Width, title_pac.Height), Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
@@ -178,11 +174,7 @@ namespace Pacman
             }
 
             //Todo: replace this with graphically displayed score
-            //Debug.WriteLine("Score: " + score);
-
-
-
-            
+            Debug.WriteLine("Score: " + score);
 
             spriteBatch.End();
 
@@ -220,8 +212,6 @@ namespace Pacman
                 default:
                     return -1;
             }
-        }
-
-    
-}
+        }    
+    }
 }

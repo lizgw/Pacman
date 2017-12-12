@@ -38,6 +38,7 @@ namespace Pacman
             {
                 game.GetMap().ChangeToBlank(tileX, tileY);
                 game.AddPoints(100);
+                game.GetMap().decreasePointCount();
             }
             if (game.GetMap().map[tileY, tileX] == Map.POWERUP)
             {

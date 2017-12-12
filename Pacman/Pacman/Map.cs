@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -18,6 +19,7 @@ namespace Pacman
         private Game1 game;
         public short[,] map;
         private Texture2D tempTexture;
+        private int pointCount;
 
         public Map(Game1 aGame)
         {
@@ -25,12 +27,28 @@ namespace Pacman
             map = initMap;
             game = aGame;
             tempTexture = game.Content.Load<Texture2D>("white");
+            pointCount = 0;
+
+            // figure out how many points are on the map
+            for(int r = 0; r < map.GetLength(0); r++)
+            {
+                for (int c = 0; c < map.GetLength(1); c++)
+                {
+                    if (map[r, c] == POINT)
+                    {
+                        pointCount++;
+                    }
+                }
+            }
         }
 
         //will this ever need to get an implementation?
         public void Update()
         {
-
+            if (pointCount == 0)
+            {
+                resetMap();
+            }
         }
 
         public void Draw(SpriteBatch sb)
@@ -148,6 +166,22 @@ namespace Pacman
             short output = map[yVal, xVal];
             map[yVal, xVal] = BLANK;
             return output;
+        }
+
+        private void resetMap()
+        {
+            map = initMap;
+        }
+
+        public void decreasePointCount()
+        {
+            pointCount--;
+            Debug.WriteLine("totalPoints" + pointCount);
+        }
+
+        public int getPointCount()
+        {
+            return pointCount;
         }
     }
 }
