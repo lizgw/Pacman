@@ -15,8 +15,9 @@ namespace Pacman
 {
     class PacMan : Mover
     {
+        public static bool pacman_powerup;
         KeyboardState kb;
-
+        
         public PacMan(Game1 aGame, int aTileX, int aTileY, Texture2D aTexture) : base(aGame, aTileX, aTileY, aTexture)
         {
             speed = 4;
@@ -38,7 +39,13 @@ namespace Pacman
                 game.GetMap().ChangeToBlank(tileX, tileY);
                 game.AddPoints(100);
             }
-                
+            if (game.GetMap().map[tileY, tileX] == Map.POWERUP)
+            {
+                game.GetMap().ChangeToBlank(tileX, tileY);
+                game.AddPoints(500);
+                pacman_powerup = true;
+    }
+
         }
 
         override protected short[] DirectionPreferences()
@@ -67,6 +74,8 @@ namespace Pacman
         override public void Draw(SpriteBatch sb)
         {
             sb.Draw(texture, destRect, Color.Yellow);
+            
+            
         }
     }
 }

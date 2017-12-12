@@ -61,7 +61,18 @@ namespace Pacman
 
         override public void Draw(SpriteBatch sb)
         {
-            sb.Draw(texture, destRect, Color.Yellow);
+           
+            if (PacMan.pacman_powerup)
+            {
+                sb.Draw(texture, destRect, Color.Blue);
+            }
+            else
+            {
+                sb.Draw(texture, destRect, Color.Yellow);
+            }
+            
+            
+            
         }
     }
 }

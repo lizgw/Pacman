@@ -31,6 +31,7 @@ namespace Pacman
         public Texture2D tempTexture;
 
         int score;
+        
         public Texture2D tileBlank;
         public Texture2D tileWall;
         public Texture2D tilePoint;
@@ -40,6 +41,7 @@ namespace Pacman
         public Texture2D start_button;
         public Texture2D title_pac;
         int timer = 0; //general timer we can use to time in-game actions
+        int powerup_time = 0; //this timer is used for ending the power up 
         bool game_started;
         public const int TILE_SIZE = 32;
 
@@ -131,7 +133,17 @@ namespace Pacman
                 game_started = true;
             }
             timer++;
+            
+            if (PacMan.pacman_powerup)
+            {
+                powerup_time++;
+                if (powerup_time==300)
+                {
+                    PacMan.pacman_powerup = false;
+                    powerup_time = 0;
 
+                }
+            }
             base.Update(gameTime);
         }
 
