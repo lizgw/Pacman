@@ -80,10 +80,21 @@ namespace Pacman
         {
             map = new Map(this);
             movers[0] = new PacMan(this, 10, 5, tempTexture);
+<<<<<<< HEAD
             //movers[1] = new Ghost(this, 19, 19, tempTexture);
             movers[2] = new Ghost(this, 1, 1, tempTexture);
             movers[3] = new Ghost(this, 1, 19, tempTexture);
             movers[4] = new Ghost(this, 19, 1, tempTexture);
+=======
+            movers[1] = new Ghost(this, 10, 10, tempTexture);
+            movers[2] = new Ghost(this, 8, 10, tempTexture);
+
+            //movers[3] = new Ghost(this, 1, 19, tempTexture);
+            //movers[4] = new Ghost(this, 19, 1, tempTexture);
+
+            movers[3] = new Ghost(this, 8, 11, tempTexture);
+            movers[4] = new Ghost(this, 9, 10, tempTexture);
+>>>>>>> ghosts start from the center
             game_started = false;
 
         }
