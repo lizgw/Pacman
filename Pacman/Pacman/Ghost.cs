@@ -68,7 +68,7 @@ namespace Pacman
             }
             else
             {
-                sb.Draw(texture, destRect, Color.Yellow);
+                sb.Draw(texture, destRect, Color.Purple);
             }
             
             

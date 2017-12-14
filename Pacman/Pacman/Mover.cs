@@ -138,7 +138,7 @@ namespace Pacman
             // change direction according to direction preferences
             foreach (short pref in directionPreferences)
             {
-                if (direction != Game1.OppositeDirection(pref) && surroundingTiles[pref] != Map.WALL)
+                if (surroundingTiles[pref] != Map.WALL)
                 {
                     return pref;
                 }
