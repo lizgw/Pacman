@@ -82,10 +82,6 @@ namespace Pacman
             movers[0] = new PacMan(this, 10, 5, tempTexture);
             //movers[1] = new Ghost(this, 19, 19, tempTexture);
             movers[2] = new Ghost(this, 1, 1, tempTexture);
-
-            //movers[3] = new Ghost(this, 1, 19, tempTexture);
-            //movers[4] = new Ghost(this, 19, 1, tempTexture);
-
             movers[3] = new Ghost(this, 1, 19, tempTexture);
             movers[4] = new Ghost(this, 19, 1, tempTexture);
             game_started = false;
@@ -166,6 +162,7 @@ namespace Pacman
                     if (mover != null)
                         mover.Draw(spriteBatch);
                 }
+                spriteBatch.DrawString(font1, "" + score, new Vector2((GraphicsDevice.Viewport.Width / 2) - 10, 2), Color.White);
             }
             else
             {
@@ -174,9 +171,6 @@ namespace Pacman
                 spriteBatch.Draw(title_pac, new Rectangle(0, 190, 200, 300), new Rectangle(0, 0, title_pac.Width, title_pac.Height), Color.White, 0, new Vector2(0, 0), SpriteEffects.FlipHorizontally, 0);
                 spriteBatch.Draw(title_pac, new Rectangle(620, 190, 200, 300), new Rectangle(0, 0, title_pac.Width, title_pac.Height), Color.White, 0, new Vector2(200, 0), SpriteEffects.None, 0);
             }
-
-            //Todo: replace this with graphically displayed score
-            spriteBatch.DrawString(font1, "" + score, new Vector2(10, 2), Color.White);
 
             spriteBatch.End();
 
